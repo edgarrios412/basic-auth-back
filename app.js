@@ -17,6 +17,10 @@ app.post("/login", (req,res) => {
     }
 })
 
+app.get("/", (req,res) => {
+    res.status(200).json({status:200})
+})
+
 app.post("/auth", (req,res) => {
     const token = req.get("authorization").split(" ")[1]
     jwt.verify(token, "secret", (err, user) => {
