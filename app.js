@@ -44,7 +44,7 @@ app.post("/login", (req,res) => {
     const userFind = User.find(u => u.user == user && u.pass == pass && u.verified == true)
     if(userFind){
         if(userFind.banned) res.json({error:"User banned", reason: userFind.reason})
-        const token = jwt.sign(req.body, "secret", {expiresIn:"10s"})
+        const token = jwt.sign(req.body, "secret", {expiresIn:"120s"})
         res.json(token)
     }else{
         res.json({error:"Datos invalidos o cuenta no verificada"})
