@@ -2,6 +2,7 @@ const express = require("express")
 const cors = require("cors")
 const jwt = require("jsonwebtoken")
 const {User} = require("./db.js")
+const { sendVerificationEmail } = require("./nodemailer.js")
 
 const app = express ()
 
@@ -66,6 +67,7 @@ app.post("/register", (req,res) => {
         token
     }
     User.push(obj)
+    sendVerificationEmail(obj.token,obj.user)
     res.status(200).json(obj.token)
 })
 
